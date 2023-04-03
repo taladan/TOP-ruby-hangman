@@ -2,6 +2,7 @@
 
 class Mask
   attr_accessor :secret
+  attr_reader :word
   def initialize(word)
     @word = word
     @secret = "_" * word.length
