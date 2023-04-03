@@ -7,7 +7,7 @@ class Mask
     @secret = "_" * word.length
   end
 
-  def replace_index(index, character)
-    @secret[index] = character
+  def replace_index(indices, character)
+    indices.each { |i| @secret[i] = character }
   end
 end
