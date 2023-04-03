@@ -12,6 +12,7 @@
 #   }
 
 class Guess
+  attr_reader :already_guessed
   def initialize(word)
     @word = word
     @already_guessed = {}
