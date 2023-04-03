@@ -7,8 +7,7 @@ class Hangman
   include Graphics
   def initialize()
     @grph = Graphics.ascii
-    @turns = @grph.length
-    @wrong_guesses = 0
+    @turns = @grph.length - 1
     @word = get_word()
     @header = "Now playing Hangman!"
     @prompt = "Please choose a letter: "
@@ -17,43 +16,66 @@ class Hangman
   end
 
   def start()
-    game_loop()
+    response = play_or_load()
+    if response == "p"
+      game_loop()
+    else
+      game_data = load()
+    end
   end
 
   private
 
+  def play_or_load()
+    output = nil
+    until output =~ /^[plPL]$/
+      system("clear") || system("cls")
+      puts y_center(
+             x_center(
+               "Would you like to [P]lay a new game or [L]oad a saved game?",
+             ),
+           )
+      output = gets.chomp
+    end
+    output
+  end
+
   def process_guess(result)
     if result != nil
       player_guess, player_guess_opts = result.first
-      @wrong_guesses += 1 unless player_guess_opts[:is_correct]
       if player_guess_opts[:is_correct]
         @mask.replace_index(
           player_guess_opts[:indices_to_replace],
           player_guess,
         )
       else
-        puts center("There are no #{player_guess.upcase}'s in the word.")
+        @turns -= 1
+        puts x_center("There are no #{player_guess.upcase}'s in the word.")
         sleep(1)
       end
     else
-      puts center("You've already guessed that letter.")
+      puts x_center("You've already guessed that letter.")
       sleep(1)
     end
   end
 
   def game_loop()
     win_state = false
-    while @wrong_guesses < @turns && !win_state
+    loose_state = false
+    while @turns > 0 && !win_state
       win_state = true if @mask.secret == @mask.word
       if win_state
         @mask.secret = @mask.word
         display(@mask.secret, nil)
-        puts center("You win!")
+        puts x_center("You win!")
         break
       end
-      display(@mask.secret, @guess.already_guessed)
+      display(@guess.already_guessed)
       process_guess(@guess.check(prompt(@mask.secret)))
-      puts center("The word was: #{@mask.word}")
+    end
+    if !win_state && @turns == 0
+      display(@guess.already_guessed)
+      puts x_center("The word was: #{@mask.word}")
     end
   end
 
@@ -61,7 +83,7 @@ class Hangman
     line_pad(1)
     guess = nil
     until guess =~ /^[a-zA-Z]$/
-      print center(@prompt)
+      print x_center(@prompt)
       guess = gets.chomp
     end
     guess
@@ -70,31 +92,36 @@ class Hangman
   def update_screen(guesses)
     # puts Graphics.pad(@header.length) + @header
     line_pad(3)
-    puts center(@header)
+    puts x_center(@header)
     line_pad(2)
     display_current()
     line_pad(3)
     # puts Graphics.pad(@instructions.length) + @instructions
-    puts center("You have #{@turns - @wrong_guesses} guesses left.")
+    puts x_center("You have #{@turns} guesses left.")
     line_pad(2)
-    puts center(@mask.secret.split("").join(" "))
+    puts x_center(@mask.secret.split("").join(" "))
     line_pad(1)
-    puts center("Letters tried: #{guesses.keys}") if guesses
+    puts x_center("Letters tried: #{guesses.keys}") if guesses
     line_pad(1)
   end
 
-  def display(secret, guesses)
+  def display(guesses)
     system("clear") || system("cls")
     update_screen(guesses)
   end
 
-  def center(text)
-    output = Graphics.pad(text.length) + text
+  def display_current()
+    puts @grph[@turns]
+  end
+
+  def x_center(text)
+    output = Graphics.x_pad(text.length) + text
     output
   end
 
-  def display_current()
-    puts @grph[@wrong_guesses]
+  def y_center(text)
+    output = Graphics.y_pad(1) + text
+    output
   end
 
   def line_pad(int)
