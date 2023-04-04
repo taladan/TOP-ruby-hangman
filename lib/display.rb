@@ -50,6 +50,9 @@ class Display
     if game_data[:guess]
       puts x_center("Letters tried: #{game_data[:guess].already_guessed.keys}")
     end
+    puts x_center(
+           "You can also type 'save' or 'exit' to either save or leave your game.",
+         )
     line_pad(1)
   end
 
