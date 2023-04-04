@@ -1,16 +1,5 @@
 # lib/guess.rb
 
-# @already_guessed = {
-#   "a":
-#   {is_correct:true,
-#     indices_to_replace:[0,1,2]
-#     }
-#   "b":
-#   {is_correct:false,
-#   indices_to_replace:nil
-# }
-#   }
-
 class Guess
   attr_accessor :wrong_guesses
   attr_reader :already_guessed
@@ -21,7 +10,9 @@ class Guess
   end
 
   def check(character)
-    if @already_guessed.has_key?(character)
+    if character.downcase == "save" || character.downcase == "exit"
+      output = character.downcase
+    elsif @already_guessed.has_key?(character)
       output = nil
     elsif @word.include?(character)
       output = {
