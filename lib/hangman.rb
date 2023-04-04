@@ -1,3 +1,4 @@
+require "yaml"
 require_relative "guess"
 require_relative "hm_graphics"
 require_relative "mask"
@@ -40,7 +41,11 @@ class Hangman
   end
 
   def process_guess(result)
-    if result != nil
+    if result == "save"
+      save()
+    elsif result == "exit"
+      quit()
+    elsif result != nil
       player_guess, player_guess_opts = result.first
       if player_guess_opts[:is_correct]
         @mask.replace_index(
@@ -74,7 +79,7 @@ class Hangman
       end
       update_game_data()
       @screen.display(@game_data)
-      process_guess(@guess.check(prompt(@mask.secret)))
+      process_guess(@guess.check(prompt()))
     end
     if !@win_state && @turns == 0
       @game_over = true
@@ -84,10 +89,11 @@ class Hangman
     end
   end
 
-  def prompt(secret)
+  def prompt()
     @screen.line_pad(1)
     guess = nil
-    until guess =~ /^[a-zA-Z]$/
+    # until guess =~ /^[a-zA-Z]$/
+    until guess =~ /[a-zA-Z]|[Ss][Aa][Vv][Ee]|[Ee][Xx][Ii][Tt]/
       print @screen.x_center(@prompt)
       guess = gets.chomp
     end
@@ -95,9 +101,39 @@ class Hangman
   end
 
   def save()
+    savedir = "sav"
+    puts "SAVING GAME!!!!!"
+    file_name = nil
+
+    until file_name =~ /^[a-zA-Z0-9]+([._-][a-zA-Z0-9]+)*$/
+      puts @screen.x_center(
+             "Please enter a valid unix-standard name for save game: ",
+           )
+      file_name = gets.chomp
+    end
+
+    file_name = file_name + ".hms"
+    save_location = savedir + "/" + file_name
+    Dir.mkdir(savedir) unless Dir.exist?(savedir)
+    File.open(save_location, "w") { |to_file| YAML.dump(@game_data, to_file) }
+    puts @screen.screen_center(<<~SAVE)
+           Game saved to #{save_location}
+           
+                Thank you for playing.
+             SAVE
+
+    sleep(3)
+    exit()
   end
 
   def load()
+    puts "LOADING GAME!!!!"
+  end
+
+  def quit()
+    puts "EXITING GAME!!!!"
+    sleep(3)
+    exit()
   end
 
   def get_word()
