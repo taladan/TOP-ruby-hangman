@@ -1,43 +1,42 @@
 require_relative "guess"
 require_relative "hm_graphics"
 require_relative "mask"
+require_relative "display"
 require "pry-byebug"
 
 class Hangman
   include Graphics
-  def initialize()
-    @grph = Graphics.ascii
-    @turns = @grph.length - 1
-    @word = get_word()
+  attr_reader :game_over
+  def initialize(display, game_data)
+    @screen = display
+    # game_data = {@grph, @turns, @word, @mask, @guess}
+    @grph = game_data[:grph] || Graphics.get_ascii
+    @turns = game_data[:turns] || @grph.length - 1
+    @word = game_data[:word] || get_word()
     @header = "Now playing Hangman!"
     @prompt = "Please choose a letter: "
-    @mask = Mask.new(@word)
-    @guess = Guess.new(@word)
-  end
-
-  def start()
-    response = play_or_load()
-    if response == "p"
-      game_loop()
-    else
-      game_data = load()
-    end
+    @mask = game_data[:mask] || Mask.new(@word)
+    @guess = game_data[:guess] || Guess.new(@word)
+    @win_state = false
+    @game_over = false
+    update_game_data()
+    game_loop()
   end
 
   private
 
-  def play_or_load()
-    output = nil
-    until output =~ /^[plPL]$/
-      system("clear") || system("cls")
-      puts y_center(
-             x_center(
-               "Would you like to [P]lay a new game or [L]oad a saved game?",
-             ),
-           )
-      output = gets.chomp
-    end
-    output
+  def update_game_data()
+    @game_data = {
+      game_over: @game_over,
+      grph: @grph,
+      guess: @guess,
+      header: @header,
+      mask: @mask,
+      prompt: @prompt,
+      turns: @turns,
+      win_state: @win_state,
+      word: @word,
+    }
   end
 
   def process_guess(result)
@@ -50,82 +49,49 @@ class Hangman
         )
       else
         @turns -= 1
-        puts x_center("There are no #{player_guess.upcase}'s in the word.")
+        puts @screen.x_center(
+               "There are no #{player_guess.upcase}'s in the word.",
+             )
         sleep(1)
       end
     else
-      puts x_center("You've already guessed that letter.")
+      puts @screen.x_center("You've already guessed that letter.")
       sleep(1)
     end
   end
 
   def game_loop()
-    win_state = false
-    loose_state = false
-    while @turns > 0 && !win_state
-      win_state = true if @mask.secret == @mask.word
-      if win_state
+    while @turns > 0 && !@win_state
+      @win_state = true if @mask.secret == @mask.word
+      update_game_data()
+      if @win_state
         @mask.secret = @mask.word
-        display(@mask.secret, nil)
-        puts x_center("You win!")
-        break
+        @win_state = true
+        @game_over = true
+        update_game_data()
+        @screen.display(@game_data)
+        return @game_over
       end
-      display(@guess.already_guessed)
+      update_game_data()
+      @screen.display(@game_data)
       process_guess(@guess.check(prompt(@mask.secret)))
     end
-    if !win_state && @turns == 0
-      display(@guess.already_guessed)
-      puts x_center("The word was: #{@mask.word}")
+    if !@win_state && @turns == 0
+      @game_over = true
+      update_game_data()
+      @screen.display(@game_data)
+      return @game_over
     end
   end
 
   def prompt(secret)
-    line_pad(1)
+    @screen.line_pad(1)
     guess = nil
     until guess =~ /^[a-zA-Z]$/
-      print x_center(@prompt)
+      print @screen.x_center(@prompt)
       guess = gets.chomp
     end
     guess
-  end
-
-  def update_screen(guesses)
-    # puts Graphics.pad(@header.length) + @header
-    line_pad(3)
-    puts x_center(@header)
-    line_pad(2)
-    display_current()
-    line_pad(3)
-    # puts Graphics.pad(@instructions.length) + @instructions
-    puts x_center("You have #{@turns} guesses left.")
-    line_pad(2)
-    puts x_center(@mask.secret.split("").join(" "))
-    line_pad(1)
-    puts x_center("Letters tried: #{guesses.keys}") if guesses
-    line_pad(1)
-  end
-
-  def display(guesses)
-    system("clear") || system("cls")
-    update_screen(guesses)
-  end
-
-  def display_current()
-    puts @grph[@turns]
-  end
-
-  def x_center(text)
-    output = Graphics.x_pad(text.length) + text
-    output
-  end
-
-  def y_center(text)
-    output = Graphics.y_pad(1) + text
-    output
-  end
-
-  def line_pad(int)
-    puts "\n" * int
   end
 
   def save()
