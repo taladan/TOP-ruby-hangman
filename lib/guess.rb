@@ -12,14 +12,15 @@
 #   }
 
 class Guess
+  attr_accessor :wrong_guesses
   attr_reader :already_guessed
   def initialize(word)
     @word = word
-    @already_guessed = {}
+    @already_guessed = Hash.new { 0 }
+    @wrong_guesses = 0
   end
 
   def check(character)
-    #need guard clause to only accept alphabet characters
     if @already_guessed.has_key?(character)
       output = nil
     elsif @word.include?(character)
