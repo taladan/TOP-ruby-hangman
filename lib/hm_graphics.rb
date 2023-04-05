@@ -1,6 +1,5 @@
 # lib/hm_graphics.rb
 require "io/console"
-require "pry-byebug"
 
 module Graphics
   def self.x_pad(num)
