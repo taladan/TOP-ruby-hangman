@@ -1,4 +1,5 @@
 # lib/display.rb
+require "pry-byebug"
 
 class Display
   def initialize()
@@ -16,17 +17,30 @@ class Display
   end
 
   def screen_center(text)
-    puts y_center(x_center(text))
+    puts y_center(x_center(text.to_s))
   end
 
-  def x_center(text)
-    output = Graphics.x_pad(text.length) + text
-    output
+  def center_align(array, with_indexes = false)
+    length = array.max_by(&:length).length
+    if with_indexes
+      array.each_with_index do |element, index|
+        puts x_center("[#{index}] - #{element}", length)
+      end
+    else
+      array.each { |element| puts x_center("#{element}") }
+    end
+  end
+
+  def x_center(text, length = 0)
+    if length > 0
+      puts Graphics.x_pad(length) + text.to_s
+    else
+      puts Graphics.x_pad(text.length) + text.to_s
+    end
   end
 
   def y_center(text)
-    output = Graphics.y_pad(1) + text
-    output
+    puts Graphics.y_pad(1) + text.to_s
   end
 
   def line_pad(int)
