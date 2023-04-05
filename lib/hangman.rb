@@ -92,7 +92,6 @@ class Hangman
     guess_bank = ("a".."z").to_a
     guess_bank.push("save")
     guess_bank.push("exit")
-    # until guess =~ /^[a-zA-Z]|[Ss][Aa][Vv][Ee]|[Ee][Xx][Ii][Tt]$/
     until guess_bank.include?(guess)
       print @screen.x_center(@prompt)
       guess = gets.downcase.chomp
