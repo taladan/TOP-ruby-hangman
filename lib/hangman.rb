@@ -3,14 +3,12 @@ require_relative "guess"
 require_relative "hm_graphics"
 require_relative "mask"
 require_relative "display"
-require "pry-byebug"
 
 class Hangman
   include Graphics
   attr_reader :game_over
   def initialize(display, game_data)
     @screen = display
-    # game_data = {@grph, @turns, @word, @mask, @guess}
     @grph = game_data[:grph] || Graphics.get_ascii
     @turns = game_data[:turns] || @grph.length - 1
     @word = game_data[:word] || get_word()

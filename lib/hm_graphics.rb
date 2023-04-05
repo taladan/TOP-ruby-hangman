@@ -70,62 +70,6 @@ module Graphics
       "  |            |\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n",
   ]
-  # @@ascii = [
-  #   x_pad + "        +-----+\n" + x_pad + "             ||\n" + x_pad +
-  #     "             ||\n" + x_pad + "             ||\n" + x_pad +
-  #     "             ||\n" + x_pad + "  \\          ||\n" + x_pad +
-  #     "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n",
-  #   x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
-  #     "             ||\n" + x_pad + "             ||\n" + x_pad +
-  #     "             ||\n" + x_pad + "  \\          ||\n" + x_pad +
-  #     "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n",
-  #   x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
-  #     "        O    ||\n" + x_pad + "             ||\n" + x_pad +
-  #     "             ||\n" + x_pad + "  \\          ||\n" + x_pad +
-  #     "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n",
-  #   x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
-  #     "        O    ||\n" + x_pad + "        |    ||\n" + x_pad +
-  #     "             ||\n" + x_pad + "  \\          ||\n" + x_pad +
-  #     "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n",
-  #   x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
-  #     "        O    ||\n" + x_pad + "       /|    ||\n" + x_pad +
-  #     "             ||\n" + x_pad + "  \\          ||\n" + x_pad +
-  #     "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n",
-  #   x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
-  #     "        O    ||\n" + x_pad + "       /|\\   ||\n" + x_pad +
-  #     "             ||\n" + x_pad + "  \\          ||\n" + x_pad +
-  #     "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n",
-  #   x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
-  #     "        O    ||\n" + x_pad + "       /|\\   ||\n" + x_pad +
-  #     "       /     ||\n" + x_pad + "  \\          ||\n" + x_pad +
-  #     "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n",
-  #   x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
-  #     "        O    ||\n" + x_pad + "       /|\\   ||\n" + x_pad +
-  #     "       / \\   ||\n" + x_pad + "  \\          ||\n" + x_pad +
-  #     "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n",
-  #   x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
-  #     "        O    ||\n" + x_pad + "       /|\\   ||\n" + x_pad +
-  #     "       / \\   ||\n" + x_pad + "  /          ||\n" + x_pad +
-  #     "  =====   ======\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n" + x_pad + "  |            |\n" + x_pad +
-  #     "  |            |\n",
-  # ]
 
   def self.get_ascii
     @@ascii

@@ -1,5 +1,4 @@
 # lib/display.rb
-require "pry-byebug"
 
 class Display
   def initialize()
@@ -50,13 +49,11 @@ class Display
   private
 
   def update_screen(game_data)
-    # puts Graphics.pad(@header.length) + @header
     line_pad(3)
     puts x_center(game_data[:header])
     line_pad(2)
     display_current(game_data)
     line_pad(3)
-    # puts Graphics.pad(@instructions.length) + @instructions
     puts x_center("You have #{game_data[:turns]} guesses left.")
     line_pad(2)
     puts x_center(game_data[:mask].secret.split("").join(" "))
