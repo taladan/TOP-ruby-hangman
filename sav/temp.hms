@@ -1,0 +1,144 @@
+---
+:game_over: false
+:grph:
+- |2
+                                                                                        +-----+
+                                                                                        |    ||
+                                                                                        O    ||
+                                                                                       /|\   ||
+                                                                                       / \   ||
+                                                                                  /          ||
+                                                                                  =====   ======
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+- |2
+                                                                                        +-----+
+                                                                                        |    ||
+                                                                                        O    ||
+                                                                                       /|\   ||
+                                                                                       / \   ||
+                                                                                  \          ||
+                                                                                  =====---======
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+- |2
+                                                                                        +-----+
+                                                                                        |    ||
+                                                                                        O    ||
+                                                                                       /|\   ||
+                                                                                       /     ||
+                                                                                  \          ||
+                                                                                  =====---======
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+- |2
+                                                                                        +-----+
+                                                                                        |    ||
+                                                                                        O    ||
+                                                                                       /|\   ||
+                                                                                             ||
+                                                                                  \          ||
+                                                                                  =====---======
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+- |2
+                                                                                        +-----+
+                                                                                        |    ||
+                                                                                        O    ||
+                                                                                       /|    ||
+                                                                                             ||
+                                                                                  \          ||
+                                                                                  =====---======
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+- |2
+                                                                                        +-----+
+                                                                                        |    ||
+                                                                                        O    ||
+                                                                                        |    ||
+                                                                                             ||
+                                                                                  \          ||
+                                                                                  =====---======
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+- |2
+                                                                                        +-----+
+                                                                                        |    ||
+                                                                                        O    ||
+                                                                                             ||
+                                                                                             ||
+                                                                                  \          ||
+                                                                                  =====---======
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+- |2
+                                                                                        +-----+
+                                                                                        |    ||
+                                                                                             ||
+                                                                                             ||
+                                                                                             ||
+                                                                                  \          ||
+                                                                                  =====---======
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+- |2
+                                                                                        +-----+
+                                                                                             ||
+                                                                                             ||
+                                                                                             ||
+                                                                                             ||
+                                                                                  \          ||
+                                                                                  =====---======
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+                                                                                  |            |
+:guess: !ruby/object:Guess
+  word: slowly
+  already_guessed:
+    f:
+      :is_correct: false
+      :indices_to_replace:
+    a:
+      :is_correct: false
+      :indices_to_replace:
+    l:
+      :is_correct: true
+      :indices_to_replace:
+      - 1
+      - 4
+    o:
+      :is_correct: true
+      :indices_to_replace:
+      - 2
+    m:
+      :is_correct: false
+      :indices_to_replace:
+    r:
+      :is_correct: false
+      :indices_to_replace:
+  wrong_guesses: 0
+:header: Now playing Hangman!
+:mask: !ruby/object:Mask
+  word: slowly
+  secret: _lo_l_
+:prompt: 'Please choose a letter: '
+:turns: 4
+:win_state: false
+:word: slowly
