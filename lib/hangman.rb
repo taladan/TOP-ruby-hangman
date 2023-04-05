@@ -80,6 +80,7 @@ class Hangman
     if !@win_state && @turns == 0
       @game_over = true
       update_game_data()
+      @game_data[:grph] = Graphics.get_animation
       @screen.display(@game_data)
       return @game_over
     end

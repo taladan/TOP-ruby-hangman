@@ -7,7 +7,7 @@ class Display
   def display(game_data)
     if game_data[:game_over] && !game_data[:win_state]
       system("clear") || system("cls")
-      update_screen(game_data)
+      play_end_animation(game_data)
       puts x_center("The word was: #{game_data[:mask].word}")
     else
       system("clear") || system("cls")
@@ -65,6 +65,32 @@ class Display
            "You can also type 'save' or 'exit' to either save or leave your game.",
          )
     line_pad(1)
+  end
+
+  def play_end_animation(game_data)
+    frames = game_data[:grph]
+    frames.each do |frame|
+      system("clear") || system("cls")
+      line_pad(3)
+      puts x_center(game_data[:header])
+      line_pad(2)
+      puts frame
+      line_pad(3)
+      puts x_center("You have #{game_data[:turns]} guesses left.")
+      line_pad(2)
+      puts x_center(game_data[:mask].secret.split("").join(" "))
+      line_pad(1)
+      if game_data[:guess]
+        puts x_center(
+               "Letters tried: #{game_data[:guess].already_guessed.keys}",
+             )
+      end
+      puts x_center(
+             "You can also type 'save' or 'exit' to either save or leave your game.",
+           )
+      line_pad(1)
+      sleep(0.25)
+    end
   end
 
   def display_current(game_data)

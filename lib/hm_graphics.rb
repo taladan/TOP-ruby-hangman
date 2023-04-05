@@ -18,60 +18,151 @@ module Graphics
     x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
       "        O    ||\n" + x_pad + "       /|\\   ||\n" + x_pad +
       "       / \\   ||\n" + x_pad + "  /          ||\n" + x_pad +
-      "  =====   ======\n" + x_pad + "  |            |\n" + x_pad +
+      "  =====    =====\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n",
     x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
       "        O    ||\n" + x_pad + "       /|\\   ||\n" + x_pad +
       "       / \\   ||\n" + x_pad + "  \\          ||\n" + x_pad +
-      "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
+      "  =====----=====\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n",
     x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
       "        O    ||\n" + x_pad + "       /|\\   ||\n" + x_pad +
       "       /     ||\n" + x_pad + "  \\          ||\n" + x_pad +
-      "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
+      "  =====----=====\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n",
     x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
       "        O    ||\n" + x_pad + "       /|\\   ||\n" + x_pad +
       "             ||\n" + x_pad + "  \\          ||\n" + x_pad +
-      "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
+      "  =====----=====\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n",
     x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
       "        O    ||\n" + x_pad + "       /|    ||\n" + x_pad +
       "             ||\n" + x_pad + "  \\          ||\n" + x_pad +
-      "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
+      "  =====----=====\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n",
     x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
       "        O    ||\n" + x_pad + "        |    ||\n" + x_pad +
       "             ||\n" + x_pad + "  \\          ||\n" + x_pad +
-      "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
+      "  =====----=====\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n",
     x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
       "        O    ||\n" + x_pad + "             ||\n" + x_pad +
       "             ||\n" + x_pad + "  \\          ||\n" + x_pad +
-      "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
+      "  =====----=====\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n",
     x_pad + "        +-----+\n" + x_pad + "        |    ||\n" + x_pad +
       "             ||\n" + x_pad + "             ||\n" + x_pad +
       "             ||\n" + x_pad + "  \\          ||\n" + x_pad +
-      "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
+      "  =====----=====\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n",
     x_pad + "        +-----+\n" + x_pad + "             ||\n" + x_pad +
       "             ||\n" + x_pad + "             ||\n" + x_pad +
       "             ||\n" + x_pad + "  \\          ||\n" + x_pad +
-      "  =====---======\n" + x_pad + "  |            |\n" + x_pad +
+      "  =====----=====\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n" + x_pad + "  |            |\n" + x_pad +
       "  |            |\n",
   ]
 
+  @@animation = [
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "      \\O/   ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "      / \\   ||\n" + x_pad +
+      " /          ||\n" + x_pad + "=====    =====\n" + x_pad +
+      "|            |\n" + x_pad + "|            |\n" + x_pad +
+      "|            |\n" + x_pad + "|            |\n",
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      "      \\O/   ||\n" + x_pad + "       |    ||\n" + x_pad +
+      " /    / \\   ||\n" + x_pad + "=====    =====\n" + x_pad +
+      "|            |\n" + x_pad + "|            |\n" + x_pad +
+      "|            |\n" + x_pad + "|            |\n",
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "      \\O/   ||\n" + x_pad +
+      " /     |/   ||\n" + x_pad + "===== /  =====\n" + x_pad +
+      "|            |\n" + x_pad + "|            |\n" + x_pad +
+      "|            |\n" + x_pad + "|            |\n",
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      " /    \\O/   ||\n" + x_pad + "=====  | =====\n" + x_pad +
+      "|     / \\    |\n" + x_pad + "|            |\n" + x_pad +
+      "|            |\n" + x_pad + "|            |\n",
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      " /     |    ||\n" + x_pad + "===== \\O======\n" + x_pad +
+      "|      |\\    |\n" + x_pad + "|     / \\    |\n" + x_pad +
+      "|            |\n" + x_pad + "|            |\n",
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      " /     |    ||\n" + x_pad + "=====  O =====\n" + x_pad +
+      "|     \\ /    |\n" + x_pad + "|      |     |\n" + x_pad +
+      "|     / \\    |\n" + x_pad + "|            |\n",
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      " /     |    ||\n" + x_pad + "=====  O =====\n" + x_pad +
+      "|            |\n" + x_pad + "|     \\ /    |\n" + x_pad +
+      "|      |     |\n" + x_pad + "|     / \\    |\n",
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      " /     |    ||\n" + x_pad + "=====  O =====\n" + x_pad +
+      "|            |\n" + x_pad + "|            |\n" + x_pad +
+      "|     __     |\n" + x_pad + "|   ==--     |\n",
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      " /     |    ||\n" + x_pad + "=====    =====\n" + x_pad +
+      "|     O      |\n" + x_pad + "|            |\n" + x_pad +
+      "|     __     |\n" + x_pad + "|   ==--     |\n",
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      " /     |    ||\n" + x_pad + "=====    =====\n" + x_pad +
+      "|            |\n" + x_pad + "|    O       |\n" + x_pad +
+      "|     __     |\n" + x_pad + "|   ==--     |\n",
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      " /     |    ||\n" + x_pad + "=====    =====\n" + x_pad +
+      "|            |\n" + x_pad + "|            |\n" + x_pad +
+      "|   O __     |\n" + x_pad + "|   ==--     |\n",
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      " /     |    ||\n" + x_pad + "=====    =====\n" + x_pad +
+      "|            |\n" + x_pad + "|            |\n" + x_pad +
+      "|     __     |\n" + x_pad + "|  O==--     |\n",
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      " /     |    ||\n" + x_pad + "=====    =====\n" + x_pad +
+      "|            |\n" + x_pad + "|            |\n" + x_pad +
+      "|     __     |\n" + x_pad + "| O ==--     |\n",
+    x_pad + "       +-----+\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      "       |    ||\n" + x_pad + "       |    ||\n" + x_pad +
+      " /     |    ||\n" + x_pad + "=====    =====\n" + x_pad +
+      "|            |\n" + x_pad + "|            |\n" + x_pad +
+      "|     __     |\n" + x_pad + "|o  ==--     |\n",
+  ]
+
   def self.get_ascii
     @@ascii
+  end
+
+  def self.get_animation
+    @@animation
   end
 end
