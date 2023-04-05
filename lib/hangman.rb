@@ -54,13 +54,11 @@ class Hangman
         )
       else
         @turns -= 1
-        puts @screen.x_center(
-               "There are no #{player_guess.upcase}'s in the word.",
-             )
+        @screen.x_center("There are no #{player_guess.upcase}'s in the word.")
         sleep(1)
       end
     else
-      puts @screen.x_center("You've already guessed that letter.")
+      @screen.x_center("You've already guessed that letter.")
       sleep(1)
     end
   end
@@ -93,7 +91,7 @@ class Hangman
     @screen.line_pad(1)
     guess = nil
     # until guess =~ /^[a-zA-Z]$/
-    until guess =~ /[a-zA-Z]|[Ss][Aa][Vv][Ee]|[Ee][Xx][Ii][Tt]/
+    until guess =~ /^[a-zA-Z]|[Ss][Aa][Vv][Ee]|[Ee][Xx][Ii][Tt]$/
       print @screen.x_center(@prompt)
       guess = gets.chomp
     end
@@ -102,13 +100,12 @@ class Hangman
 
   def save()
     savedir = "sav"
-    puts "SAVING GAME!!!!!"
     file_name = nil
 
     until file_name =~ /^[a-zA-Z0-9]+([._-][a-zA-Z0-9]+)*$/
-      puts @screen.x_center(
-             "Please enter a valid unix-standard name for save game: ",
-           )
+      @screen.x_center(
+        "Please enter a valid unix-standard name for save game: ",
+      )
       file_name = gets.chomp
     end
 
@@ -116,23 +113,13 @@ class Hangman
     save_location = savedir + "/" + file_name
     Dir.mkdir(savedir) unless Dir.exist?(savedir)
     File.open(save_location, "w") { |to_file| YAML.dump(@game_data, to_file) }
-    puts @screen.screen_center(<<~SAVE)
-           Game saved to #{save_location}
-           
-                Thank you for playing.
-             SAVE
-
-    sleep(3)
-    exit()
-  end
-
-  def load()
-    puts "LOADING GAME!!!!"
+    @screen.screen_center("Game saved to #{save_location}")
+    quit()
   end
 
   def quit()
-    puts "EXITING GAME!!!!"
-    sleep(3)
+    @screen.x_center("Thank you for playing!")
+    sleep(2)
     exit()
   end
 
