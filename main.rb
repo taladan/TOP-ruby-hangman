@@ -1,29 +1,49 @@
+require "yaml"
 require "./lib/hangman.rb"
 require "./lib/display"
-require "pry-byebug"
 
-def play_or_load(display)
+$display = nil
+
+def load?()
   output = ""
   until output =~ /^[plPL]$/
     system("clear") || system("cls")
-    display.screen_center(
+    $display.screen_center(
       "Would you like to [P]lay a new game or [L]oad a saved game?",
     )
     output = gets.chomp
   end
-  output
-end
-
-def save()
+  output.downcase == "l"
 end
 
 def load()
+  dir_name = "sav"
+  output = nil
+
+  if Dir.exist?(dir_name)
+    choice = nil
+    files = Dir.entries(dir_name)
+    %w[. ..].each { |element| files.delete(element) }
+    $display.center_align(files, true)
+
+    until (0..files.length).include?(choice)
+      $display.x_center("Please choose a game to load: ")
+      choice = gets.chomp.to_i
+    end
+
+    picked_file = files[choice]
+    file_location = dir_name + "/" + picked_file
+    File.open(file_location, "r") { |file| output = YAML.load_stream(file)[0] }
+  else
+    $display.screen_center("No save data found.")
+  end
+  return output
 end
 
 def play_again?()
   output = ""
   until output.downcase =~ /^[yn]$/
-    puts "Play again (y/n)? "
+    $display.x_center("Play again (y/n)? ")
     output = gets.chomp until output.downcase =~ /^[yn]$/
   end
   output == "y"
@@ -38,14 +58,13 @@ def main()
 end
 
 def start()
-  display = Display.new()
-  response = play_or_load(display)
-  game_data = Hash.new(nil)
-  if response == "l"
+  $display = Display.new()
+  if load?
     game_data = load()
   else
-    game = Hangman.new(display, game_data)
+    game_data = Hash.new(false)
   end
+  game = Hangman.new($display, game_data)
 end
 
 main()
